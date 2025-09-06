@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio — Luis Felipe Moraes Nicolau</title>
+  <meta name="description" content="Portfólio digital de Luis Felipe Moraes Nicolau — Engenheiro de Software, Empreendedor e especialista em IA." />
+  <style>
+    :root{
+      --bg:#0b1020;          /* fundo escuro elegante */
+      --card:#121936;        /* cartões */
+      --muted:#7f8db9;       /* texto secundário */
+      --text:#e8ecff;        /* texto principal */
+      --brand:#6ea8ff;       /* cor de destaque */
+      --brand-2:#8ef5ff;     /* gradiente */
+      --accent:#aef38a;      /* gradiente */
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background:linear-gradient(180deg,#0b1020 0%, #0f1530 100%);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header */
+    .wrap{max-width:1100px; margin-inline:auto; padding-inline:20px}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(11,16,32,.6); border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{
+      width:36px; height:36px; border-radius:10px;
+      background:conic-gradient(from 120deg,var(--brand),var(--brand-2),var(--accent));
+      box-shadow:0 0 0 2px rgba(255,255,255,.05), var(--shadow);
+    }
+    .brand h1{font-size:16px; margin:0; letter-spacing:.3px; font-weight:700}
+    nav ul{display:flex; gap:14px; list-style:none; margin:0; padding:0}
+    nav a{
+      display:inline-block; padding:.5rem .8rem; border-radius:999px; font-weight:600; font-size:14px;
+      border:1px solid transparent
+    }
+    nav a.active, nav a:hover{
+      border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.05)
+    }
+
+    /* Hero / Perfil */
+    .section{padding:72px 0}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:center}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border:1px solid rgba(255,255,255,.08); border-radius:999px; color:var(--muted); font-size:12px; margin-bottom:10px}
+    .title{font-size:clamp(28px, 3.6vw, 44px); line-height:1.1; margin:6px 0 14px}
+    .subtitle{color:var(--muted); font-size:16px; line-height:1.6}
+    .cta{display:flex; gap:12px; margin-top:22px}
+    .btn{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b1020; font-weight:800; border:none; padding:.9rem 1.1rem; border-radius:12px; cursor:pointer}
+    .btn.secondary{background:none; color:var(--text); border:1px solid rgba(255,255,255,.14)}
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .avatar{
+      width:220px; height:220px; border-radius:999px; overflow:hidden; border:2px solid rgba(255,255,255,.08); margin:8px auto 18px; display:block
+    }
+    .contact{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .chip{border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:999px; font-size:14px; color:var(--muted)}
+
+    /* Currículo */
+    .grid{display:grid; gap:22px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .timeline{position:relative; padding-left:24px}
+    .timeline::before{content:""; position:absolute; left:8px; top:8px; bottom:8px; width:2px; background:linear-gradient(var(--brand), transparent)}
+    .item{position:relative; padding:16px; border-radius:14px}
+    .item::before{content:""; position:absolute; left:-18px; top:18px; width:10px; height:10px; border-radius:50%; background:var(--brand)}
+    h3{margin:.2rem 0 .4rem; font-size:18px}
+    h2.section-title{font-size:22px; letter-spacing:.4px; margin:0 0 14px}
+    p{margin:.4rem 0 .8rem}
+    ul{margin:.2rem 0 .8rem 1.1rem}
+
+    /* Projetos */
+    .project{display:grid; grid-template-columns:.9fr 1.1fr; gap:18px; align-items:start}
+    .project h3{margin-top:0}
+
+    /* Habilidades */
+    .skills{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+    .pill{display:block; padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,.08); color:var(--text)}
+    .pill small{display:block; color:var(--muted); margin-top:6px; line-height:1.4}
+
+    /* Testemunhos */
+    blockquote{margin:0; font-size:18px; line-height:1.5}
+    .quote-author{color:var(--muted); font-weight:600; margin-top:8px}
+
+    /* Footer */
+    footer{color:var(--muted); padding:40px 0; border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Responsivo */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .project{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+      .skills{grid-template-columns:1fr 1fr}
+      nav ul{gap:6px}
+      nav a{padding:.45rem .65rem}
+    }
+    @media (max-width: 520px){
+      .skills{grid-template-columns:1fr}
+      .avatar{width:170px; height:170px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Portfólio • Luis Felipe Nicolau</h1>
+      </div>
+      <nav aria-label="Seções do portfólio">
+        <ul>
+          <li><a href="#perfil" class="navlink">Perfil Pessoal</a></li>
+          <li><a href="#curriculo" class="navlink">Currículo</a></li>
+          <li><a href="#projetos" class="navlink">Projetos Acadêmicos</a></li>
+          <li><a href="#skills" class="navlink">Habilidades</a></li>
+          <li><a href="#depoimentos" class="navlink">Recomendações</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Perfil Pessoal -->
+  <section id="perfil" class="section">
+    <div class="wrap hero">
+      <div>
+        <span class="badge">👋 Olá! Eu sou</span>
+        <h2 class="title">Engenheiro de Software e Empreendedor</h2>
+        <p class="subtitle">
+          Sou Luis Felipe Moraes Nicolau, engenheiro de software full-stack e especialista em
+          inteligência artificial, com mais de dez anos de experiência no desenvolvimento de soluções
+          escaláveis, seguras e inovadoras. Atuei na fundação e liderança de startups de grande impacto,
+          como a Jovens Gênios, plataforma de EdTech que alcançou mais de 100 mil usuários e foi avaliada
+          em mais de R$ 100 milhões.
+        </p>
+        <p class="subtitle">
+          Minha trajetória inclui o desenvolvimento de sistemas em fintechs e legaltechs, sempre com foco na aplicação prática da IA generativa e LLMs, arquitetura em nuvem e metodologias ágeis. Já liderei times multidisciplinares, implementei processos de DevOps e entreguei soluções que uniram tecnologia de ponta a resultados concretos para empresas e usuários.
+        </p>
+        <p class="subtitle">
+          Além da experiência profissional, sou um entusiasta da programação: passo parte do meu tempo livre pesquisando novas tecnologias, escrevendo código por diversão e publicando aplicativos e sites autorais. Esse hábito reforça minha curiosidade e paixão contínua por aprender e criar.
+        </p>
+        <p class="subtitle">
+          Sou movido pelo desafio de transformar dados e algoritmos em produtos reais, capazes de gerar valor, melhorar experiências e apoiar decisões estratégicas. Meu objetivo é seguir ampliando o impacto da tecnologia na vida das pessoas, com inovação, visão empreendedora e compromisso com a qualidade.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#projetos">Ver projetos</a>
+          <a class="btn secondary" href="#curriculo">Ver currículo</a>
+        </div>
+      </div>
+      <aside class="card" style="padding:20px; text-align:center">
+        <!-- Avatar placeholder (substitua o src por sua foto real quando quiser) -->
+        <img class="avatar" alt="Foto de perfil de Luis Felipe Moraes Nicolau" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%236ea8ff'/><stop offset='100%' stop-color='%238ef5ff'/></linearGradient></defs><rect width='100%' height='100%' fill='%23121936'/><circle cx='200' cy='150' r='70' fill='url(%23g)'/><rect x='110' y='240' width='180' height='90' rx='45' fill='url(%23g)' opacity='0.7'/></svg>" />
+        <h2 class="section-title">Contato</h2>
+        <div class="contact">
+          <a class="chip" href="mailto:luisfnicolau@gmail.com">luisfnicolau@gmail.com</a>
+          <a class="chip" href="https://www.linkedin.com/in/luis-felipe-nicolau/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Currículo -->
+  <section id="curriculo" class="section">
+    <div class="wrap">
+      <h2 class="section-title">Currículo</h2>
+      <div class="card" style="padding:18px">
+        <div class="timeline">
+          <div class="item card" style="background:none; border:1px solid rgba(255,255,255,.08)">
+            <h3>EcoDoctor, Manaus — Diretor de Tecnologia &amp; Produto</h3>
+            <p><strong>Julho 2023 – Maio 2025</strong></p>
+            <ul>
+              <li>Concepção, desenvolvimento e escalonamento de uma plataforma fintech em nuvem, movimentando mais de R$ 5 milhões em transações no primeiro ano.</li>
+              <li>Implementação de ferramentas baseadas em IA, incluindo verificação de identidade com reconhecimento de imagem e chatbot de atendimento ao cliente.</li>
+              <li>Liderança de todo o ciclo de desenvolvimento, utilizando AWS ECS, RDS, Lambda, SQS e Terraform.</li>
+              <li>Implantação de práticas DevOps, pipelines CI/CD e testes automatizados para garantir qualidade e segurança.</li>
+              <li>Entrega de soluções financeiras voltadas ao setor da saúde, alinhando visão de negócio e tecnologia de ponta.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projetos Acadêmicos e Profissionais -->
+  <section id="projetos" class="section">
+    <div class="wrap">
+      <h2 class="section-title">Projetos Acadêmicos e Profissionais</h2>
+      <article class="project card" style="padding:18px">
+        <div>
+          <h3>EcoDoctor</h3>
+          <p>EcoDoctor é um aplicativo voltado exclusivamente para médicos, com foco em gestão de escalas de plantão e adiantamento de honorários, oferecendo uma experiência ágil, prática e segura começo ao fim:</p>
+          <ul>
+            <li><strong>Adiantamento de recebíveis em até 24 horas</strong><br/> Os médicos podem antecipar seus pagamentos de plantões diretamente pelo app, sem depender de prazos longos ou burocracias financeiras.</li>
+            <li><strong>Gestão financeira acessível e inteligente</strong><br/> A plataforma permite acompanhar os recebíveis e gerenciar transações com clareza, por meio de relatórios financeiros centralizados.</li>
+            <li><strong>Integração com hospitais e processos simplificados</strong><br/> Se o hospital já for parceiro, a operação é automática; caso contrário, basta enviar a nota fiscal. Isso garante aprovação rápida e tranquila, com comunicação direta com o hospital.</li>
+            <li><strong>Interface intuitiva focada no usuário</strong><br/> Desenvolvido com design centrado no médico, o app facilita a troca de plantões, acesso a escalas e controle financeiro de maneira clara e eficiente.</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="margin-top:0">Destaques técnicos</h3>
+          <ul>
+            <li>Arquitetura em nuvem (AWS ECS, RDS, Lambda, SQS)</li>
+            <li>Integrações seguras com parceiros (hospitais e gateways de pagamento)</li>
+            <li>Monitoramento e observabilidade, com alertas proativos</li>
+            <li>Pipeline CI/CD com testes automatizados e infraestrutura como código (Terraform)</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Habilidades e Competências -->
+  <section id="skills" class="section">
+    <div class="wrap">
+      <h2 class="section-title">Habilidades e Competências</h2>
+      <div class="skills">
+        <div class="pill card">
+          <strong>Desenvolvimento Web Full-Stack &amp; DevOps</strong>
+          <small>Experiência sólida em arquitetura e desenvolvimento de soluções completas, do front-end ao back-end, com foco em desempenho, escalabilidade e segurança. DevOps com pipelines de CI/CD, monitoramento e automação.</small>
+        </div>
+        <div class="pill card">
+          <strong>Gestão de Times de Tecnologia e Produto</strong>
+          <small>Liderança de equipes multidisciplinares, formação e coordenação de times. Atuação estratégica na definição de metas, priorização de entregas e alinhamento com objetivos de negócio.</small>
+        </div>
+        <div class="pill card">
+          <strong>Planejamento Estratégico &amp; Inovação</strong>
+          <small>Alinhamento entre tecnologia e crescimento empresarial, com foco em impacto real. Forte atuação em ambientes de startup e metodologias ágeis.</small>
+        </div>
+        <div class="pill card">
+          <strong>Inteligência Artificial &amp; LLMs</strong>
+          <small>IA generativa, modelos de linguagem e arquiteturas RAG para soluções em educação, saúde e jurídico.</small>
+        </div>
+        <div class="pill card">
+          <strong>Cloud Computing &amp; Infraestrutura</strong>
+          <small>AWS (ECS, RDS, Lambda, SQS, EC2, MSK), Docker e Terraform para sistemas robustos em nuvem, com alta disponibilidade e custo otimizado.</small>
+        </div>
+        <div class="pill card">
+          <strong>Banco de Dados &amp; Análise de Dados</strong>
+          <small>PostgreSQL, MySQL, Neo4j e NoSQL. Modelagem, otimização de queries e análises para apoiar decisões.</small>
+        </div>
+        <div class="pill card">
+          <strong>Paixão pela Programação</strong>
+          <small>Pesquisa constante de novas tecnologias e desenvolvimento de projetos pessoais publicados, mantendo habilidades afiadas e criatividade em alta.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recomendações e testemunhos -->
+  <section id="depoimentos" class="section">
+    <div class="wrap">
+      <h2 class="section-title">Recomendações &amp; Testemunhos</h2>
+      <div class="grid two">
+        <figure class="card" style="padding:18px; margin:0">
+          <blockquote>
+            “Sem você a Jovens Gênios não teria chegado até aqui. Eu tinha uma ideia, e sei que o único que pode fazer é você.”
+          </blockquote>
+          <figcaption class="quote-author">— Fernando Costa, Cofundador | CTO &amp; CPO na Jovens Gênios</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="year"></span> Luis Felipe Moraes Nicolau. Todos os direitos reservados.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Atualiza ano automaticamente
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Realça item ativo do menu conforme a rolagem
+    const links = document.querySelectorAll('.navlink');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = '#' + entry.target.id;
+        const link = document.querySelector(`a[href="${id}"]`);
+        if(entry.isIntersecting){
+          links.forEach(l => l.classList.remove('active'));
+          link?.classList.add('active');
+        }
+      });
+    }, {rootMargin: "-40% 0px -55% 0px", threshold: 0.01});
+
+    sections.forEach(sec => sec && io.observe(sec));
+  </script>
+</body>
+</html>
